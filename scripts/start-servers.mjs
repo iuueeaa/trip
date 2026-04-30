@@ -150,8 +150,9 @@ async function startServers() {
       waitForServer(`http://localhost:${phpPort}`),
       waitForServer(`http://localhost:${vitePort}`),
     ]);
-    console.log(`🚀 Opening browser: ${phpUrl}`);
-    openBrowser(phpUrl);
+    const localUrl = `http://localhost:${phpPort}`;
+    console.log(`🚀 Opening browser: ${localUrl}`);
+    openBrowser(localUrl);
 
     // プロセス終了時のクリーンアップ
     const cleanup = () => {
