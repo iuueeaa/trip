@@ -1,0 +1,47 @@
+{
+	"permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npx prettier *)",
+      "Bash(npx eslint *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(grep *)",
+      "Bash(node --c *)",
+      "Bash(node --check *)",
+      "Bash(php -l *)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.git-credentials)",
+      "Read(~/.config/gh/**)",
+      "Edit(~/.bashrc)",
+      "Edit(~/.zshrc)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(nc *)",
+      "Bash(ssh *)",
+      "Bash(git push *)"
+    ]
+  },
+	"enableAllProjectMcpServers": false,
+  "sandbox": {
+    "filesystem": {
+      "denyRead": ["./.env", "./.env.*"]
+    }
+  },
+  "language": "Japanese",
+  "statusLine": {
+    "type": "command",
+    "command": "jq -r '\"[\\(.model.display_name)] context: \\(.context_window.used_percentage // 0 | round)%\"'"
+  }
+}

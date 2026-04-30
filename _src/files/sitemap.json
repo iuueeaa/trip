@@ -1,0 +1,421 @@
+[
+  {
+    "name": "ホーム",
+    "name_en": "Home",
+    "slug": "home",
+    "class": "",
+    "icon": "",
+    "rank": "TOP",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "top",
+    "display": ["", "modal", "modal1", "footer1"]
+  },
+  {
+    "name": "お知らせ",
+    "name_en": "News",
+    "slug": "news",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "display": ["header", "modal", "modal1", "footer1"],
+    "taxonomy": [
+      {
+        "name": "カテゴリ",
+        "slug": "category",
+        "category": true,
+        "value": [
+          ["カテゴリ1", "category1"],
+          ["カテゴリ2", "category2"],
+          ["カテゴリ3", "category3"],
+          ["カテゴリ4", "category4"]
+        ]
+      }
+    ],
+    "children": { "type": "taxonomy", "slug": ["category"], "all": true }
+  },
+  {
+    "name": "トピックス",
+    "name_en": "Topics",
+    "slug": "topics",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "display": ["modal", "modal1", "footer1"],
+    "taxonomy": [
+      {
+        "name": "カテゴリ",
+        "slug": "category",
+        "category": true,
+        "value": [
+          ["カテゴリ1", "category1"],
+          ["カテゴリ2", "category2"],
+          ["カテゴリ3", "category3"],
+          ["カテゴリ4", "category4"]
+        ]
+      },
+      {
+        "name": "タグ",
+        "slug": "tag",
+        "category": false,
+        "value": [
+          ["タグ1", "tag1"],
+          ["タグ2", "tag2"],
+          ["タグ3", "tag3"],
+          ["タグ4", "tag4"]
+        ]
+      }
+    ],
+    "children": { "type": "taxonomy", "slug": ["category"], "all": true }
+  },
+  {
+    "name": "私たちについて",
+    "name_en": "About Us",
+    "slug": "about",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "display": ["header", "modal", "modal1", "footer1"],
+    "children": []
+  },
+  {
+    "name": "企業情報",
+    "name_en": "Company",
+    "slug": "company",
+    "class": "",
+    "pankuzu": "企業情報TOP",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "display": ["header", "modal", "modal2", "footer2"],
+    "children": [
+      {
+        "name": "企業情報TOP",
+        "name_en": "Company Top",
+        "slug": "top",
+        "display": ["modal"],
+        "class": "",
+        "icon": "",
+        "rank": "B",
+        "check": {
+          "pc": false,
+          "tb": false,
+          "sp": false,
+          "wp": false
+        },
+        "post_type": "top"
+      },
+      {
+        "name": "メッセージ",
+        "name_en": "Message",
+        "slug": "message",
+        "display": ["header", "modal", "modal2", "footer2"],
+        "class": "",
+        "url": "/company/#Message",
+        "icon": "",
+        "rank": "B",
+        "check": {
+          "pc": false,
+          "tb": false,
+          "sp": false,
+          "wp": false
+        },
+        "post_type": "link"
+      },
+      {
+        "name": "経営方針",
+        "name_en": "Vision",
+        "slug": "vision",
+        "display": ["header", "modal", "modal2", "footer2"],
+        "class": "",
+        "icon": "",
+        "rank": "B",
+        "check": {
+          "pc": false,
+          "tb": false,
+          "sp": false,
+          "wp": false
+        },
+        "post_type": "page"
+      },
+
+      {
+        "name": "会社概要",
+        "name_en": "Outline",
+        "slug": "outline",
+        "display": ["header", "modal", "modal2", "footer2"],
+        "class": "",
+        "icon": "",
+        "rank": "B",
+        "check": {
+          "pc": false,
+          "tb": false,
+          "sp": false,
+          "wp": false
+        },
+        "post_type": "page",
+        "children": [
+          {
+            "name": "会社沿革",
+            "name_en": "History",
+            "slug": "history",
+            "display": ["header", "modal", "modal2", "footer2"],
+            "class": "",
+            "icon": "",
+            "rank": "B",
+            "check": {
+              "pc": false,
+              "tb": false,
+              "sp": false,
+              "wp": false
+            },
+            "post_type": "page"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "事業紹介",
+    "name_en": "Service",
+    "slug": "service",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "taxonomy": [
+      {
+        "name": "カテゴリ",
+        "slug": "category",
+        "category": true,
+        "value": [
+          ["カテゴリ1", "category1"],
+          ["カテゴリ2", "category2"],
+          ["カテゴリ3", "category3"],
+          ["カテゴリ4", "category4"]
+        ]
+      }
+    ],
+    "display": ["header", "modal", "modal3", "footer3"],
+
+    "children": { "type": "taxonomy", "slug": ["category"], "all": true }
+  },
+  {
+    "name": "事例紹介",
+    "name_en": "Case",
+    "slug": "case",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "display": ["header", "modal", "modal3", "footer3"],
+    "taxonomy": [
+      {
+        "name": "カテゴリ",
+        "slug": "category",
+        "category": true,
+        "value": [
+          ["カテゴリ1", "category1"],
+          ["カテゴリ2", "category2"],
+          ["カテゴリ3", "category3"],
+          ["カテゴリ4", "category4"]
+        ]
+      }
+    ],
+    "children": { "type": "taxonomy", "slug": ["category"], "all": true }
+  },
+  {
+    "name": "制作事例",
+    "name_en": "Works",
+    "slug": "works",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "display": ["header", "modal", "modal3", "footer3"],
+    "taxonomy": [
+      {
+        "name": "カテゴリ",
+        "slug": "category",
+        "category": true,
+        "value": [
+          ["worksカテゴリ1", "category1"],
+          ["worksカテゴリ2", "category2"],
+          ["worksカテゴリ3", "category3"],
+          ["worksカテゴリ4", "category4"]
+        ]
+      }
+    ],
+    "children": { "type": "taxonomy", "slug": ["category"], "all": true }
+  },
+  {
+    "name": "採用情報",
+    "name_en": "Recruit",
+    "slug": "recruit",
+    "class": "",
+    "icon": "icon-person",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "post",
+    "display": ["headerSub", "modal", "modal4", "footer4"],
+    "taxonomy": [],
+    "children": []
+  },
+  {
+    "name": "ストーリー",
+    "name_en": "Story",
+    "slug": "story",
+    "display": ["header", "modal", "modal4", "footer4"],
+    "class": "",
+    "icon": "icon-question",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "children": []
+  },
+  {
+    "name": "よくあるご質問",
+    "name_en": "Faq",
+    "slug": "faq",
+    "display": ["headerSub", "modal", "modal4", "footer4"],
+    "class": "",
+    "icon": "icon-question",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "children": []
+  },
+  {
+    "name": "お問い合わせ",
+    "name_en": "Contact",
+    "slug": "contact",
+    "class": "is-cv",
+    "icon": "icon-mail",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "form",
+    "display": ["header", "modal", "modal4", "footer4"],
+    "children": []
+  },
+  {
+    "name": "個人情報保護方針",
+    "name_en": "Privacy Policy",
+    "slug": "privacy",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "display": ["modalSub", "footerSub"],
+    "children": []
+  },
+  {
+    "name": "サイト利用規約",
+    "name_en": "Terms of use",
+    "slug": "terms",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "page",
+    "display": ["modalSub", "footerSub"],
+    "children": []
+  },
+  {
+    "name": "採用応募フォーム",
+    "name_en": "Recruit Form",
+    "slug": "recruitform",
+    "class": "",
+    "icon": "",
+    "rank": "B",
+    "check": {
+      "pc": false,
+      "tb": false,
+      "sp": false,
+      "wp": false
+    },
+    "post_type": "form",
+
+    "display": [],
+    "children": []
+  }
+]

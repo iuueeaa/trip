@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "allow": ["Bash(node scripts/generate-pages.mjs)", "Bash(node /Volumes/A-ssd/github/template-corporate/scripts/generate-pages.mjs)"]
+  }
+}

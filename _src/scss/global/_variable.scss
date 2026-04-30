@@ -1,0 +1,224 @@
+@use "sass:math";
+$mediaTB: 1000;
+$mediaSP: 680;
+$fontSizePC: 14; //px
+$fontSizeTB: 13; //px
+$fontSizeSP: 12; //px
+
+/* --------------------------------------------
+FontSetting フォント設定
+--------------------------------------------*/
+:root {
+  --TB: #{$mediaTB}px;
+  --SP: #{$mediaSP}px;
+  --jp_go: "Noto Sans JP", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "YuGothic", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", Osaka,
+    "ＭＳ Ｐゴシック", "MS PGothic", "メイリオ", "Meiryo", sans-serif;
+  --jp_min: 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, serif;
+  --en_go: "Roboto", sans-serif;
+  --en_min: "Times New Roman", "Georgia", serif;
+  --go: "Roboto", var(--jp_go);
+  --min: "Times New Roman", var(--jp_min);
+  --ff: var(--go);
+
+  --fz_pc: #{$fontSizePC}px; //PCフォントサイズ
+  --fz_tb: #{$fontSizeTB}px; //TBフォントサイズ
+  --fz_sp: #{$fontSizeSP}px; //SPフォントサイズ
+
+  --lh: 2; //基本行間
+  --ls: 0.06em; //基本文字間
+  --fwh: 700; //極太文字
+  --fwb: 500; //太文字
+  --fwn: 400; //基本文字太さ
+
+  //べき乗
+  @for $i from 0 through 10 {
+    $n: 1;
+    $n_tb: 1;
+    $n_sp: 1;
+
+    @for $j from 0 to $i {
+      $n: $n * 1.2;
+      $n_tb: $n_tb * 1.2;
+      $n_sp: $n_sp * 1.15;
+    }
+
+    $n: $fontSizePC * $n;
+    $n_tb: $fontSizeTB * $n_tb;
+    $n_sp: $fontSizeSP * $n_sp;
+    // $n: math.round($n * 100) * 0.01;
+    $n: math.round($n);
+    $n_tb: math.round($n_tb);
+    $n_sp: math.round($n_sp);
+
+    --pow#{$i}: #{$n}px;
+
+    @media only screen and (max-width: #{$mediaTB}px) {
+      --pow#{$i}: #{$n_tb}px;
+    }
+
+    @media only screen and (max-width: #{$mediaSP}px) {
+      --pow#{$i}: #{$n_sp}px;
+    }
+  }
+
+  --fzs: 12px;
+  @media only screen and (max-width: #{$mediaTB}px) {
+    --fzs: 11px;
+  }
+  @media only screen and (max-width: #{$mediaSP}px) {
+    --fzs: 10px;
+  }
+
+  /* --------------------------------------------
+ColorSetting カラー設定
+--------------------------------------------*/
+  @for $i from 0 through 100 {
+    $n: $i;
+    --l#{$n}: hsla(0, 0%, #{$n}%, 1);
+    --d#{$n}: hsla(0, 0%, #{100-$n}%, 1);
+  }
+
+  $hue: 80;
+
+  @for $i from 0 through 100 {
+    $n: $i;
+    $saturation: round(5 * math.div($n, 100)) + 5;
+    $saturation2: round(5 * math.div(100-$n, 100)) + 3;
+    --l#{$n}: hsla(#{$hue}, #{$saturation}%, #{$n}%, 1);
+    --d#{$n}: hsla(#{$hue}, #{$saturation2}%, #{100-$n * 0.9}%, 1);
+  }
+
+  --Overlay: hsla(#{$hue}, 10%, 5%, 0.6);
+  // --Overlay: hsla(0, 0%, 20%, 0.6);
+
+  //KeyColor
+  --Key1: #437365;
+  --Key2: #84A4BF;
+  --Key3: #D99F59;
+  --Attention: #c21f1f;
+
+  //BasicColor(通常色)
+  --BasicTitle: var(--l0);
+  --BasicText: var(--l20);
+  --BasicSubText: var(--l35);
+  --BasicBorder: var(--l80);
+  --BasicBase1: var(--l96);
+  --BasicBase2: var(--l94);
+  --BasicBase3: var(--l90);
+  --BasicWhite: var(--l100);
+
+  //InvertColor(反転色)
+  --InvertTitle: var(--d0);
+  --InvertText: var(--d20);
+  --InvertSubText: var(--d35);
+  --InvertBorder: var(--d70);
+  --InvertBase1: var(--d97);
+  --InvertBase2: var(--d94);
+  --InvertBase3: var(--d90);
+  --InvertWhite: var(--d100);
+  
+
+  --Title: var(--BasicTitle);
+  --Text: var(--BasicText);
+  --SubText: var(--BasicSubText);
+  --Border: var(--BasicBorder);
+  --Base1: var(--BasicBase1);
+  --Base2: var(--BasicBase2);
+  --Base3: var(--BasicBase3);
+  --White: var(--BasicWhite);
+
+  &.is-invert, &.is-sectionInvert {
+    --Title: var(--InvertTitle);
+    --Text: var(--InvertText);
+    --SubText: var(--InvertSubText);
+    --Border: var(--InvertBorder);
+    --Base1: var(--InvertBase1);
+    --Base2: var(--InvertBase2);
+    --Base3: var(--InvertBase3);
+    --White: var(--InvertWhite);
+  }
+
+  /* --------------------------------------------
+  ContentSetting コンテンツ幅
+  --------------------------------------------*/
+  --contentMaxWidth: 1200px; //maxがない場合は9999px
+  --contentWidth: 90vw;
+  --contentLeft: 5vw;
+  --contentRight: 5vw;
+
+  @media only screen and (min-width: #{math.div(1200, 0.9)}px) {
+    --contentLeft: calc((100vw - 1200px) * 0.5);
+    --contentRight: calc((100vw - 1200px) * 0.5);
+  }
+
+  @media only screen and (max-width: #{$mediaTB}px) {
+    --contentWidth: 90vw;
+    --contentLeft: 5vw;
+    --contentRight: 5vw;
+  }
+
+  @media only screen and (max-width: #{$mediaSP}px) {
+    --contentWidth: 86vw;
+    --contentLeft: 7vw;
+    --contentRight: 7vw;
+  }
+
+  --commonWidth: min(var(--contentWidth), var(--contentMaxWidth));
+
+  /* --------------------------------------------
+  GridSetting グリッド設定
+  --------------------------------------------*/
+  --gridNum: 12; //一番上指定
+  --gridGap: min(2.5vw, var(--contentMaxWidth) * 0.25);
+
+  @media only screen and (max-width: #{$mediaSP}px) {
+    --gridGap: min(5vw, var(--contentMaxWidth) * 0.5);
+  }
+
+  --gridWidth: calc(((var(--commonWidth) + var(--gridGap)) / var(--gridNum)) - var(--gridGap));
+
+  
+}
+@function gridSize($value, $inside: false) {
+
+  //最後のgapを含むか含まないか trueで含む
+  @if $inside {
+    @return calc((var(--gridWidth) * $value) + (var(--gridGap) * $value));
+  }
+
+  @else {
+    @return calc((var(--gridWidth) * $value) + (var(--gridGap) * ($value - 1)));
+  }
+}
+:root {
+  /* --------------------------------------------
+  SizeSetting その他サイズ設定
+  --------------------------------------------*/
+  --sectionPadding: #{gridSize(1, true)};
+  --narrowWidth: #{gridSize(1, true)};
+  --textBoxWidth: #{gridSize(1, true)};
+  --buttonWidth: #{gridSize(3, true)};
+  --buttonRadius: 3px;
+  --logoWidth: 80px;
+  @media only screen and (max-width: #{$mediaTB}px) {
+    --sectionPadding: #{gridSize(1, true)};
+    --narrowWidth: #{gridSize(1, true)};
+    --textBoxWidth: #{gridSize(1, true)};
+    --buttonWidth: #{gridSize(1, true)};
+    --logoWidth: 100px;
+  }
+  @media only screen and (max-width: #{$mediaSP}px) {
+    --sectionPadding: #{gridSize(1, true)};
+    --narrowWidth: #{gridSize(1, true)};
+    --textBoxWidth: #{gridSize(1, true)};
+    --buttonWidth: #{gridSize(1, true)};
+    --logoWidth: 100px;
+  }
+  /* --------------------------------------------
+  EasingSetting イージング設定
+  --------------------------------------------*/
+  --duration: 200ms;
+  --easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --durationSlow: 400ms;
+}
+

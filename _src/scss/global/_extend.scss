@@ -1,0 +1,46 @@
+@use "mixin" as global;
+@use "sass:math";
+
+// $maxWidth: math.div(1280, 0.9);
+
+// :root {
+//   --ml: 5vw;
+//   --mr: 5vw;
+
+//   @media only screen and (min-width: #{$maxWidth}px) {
+//     --ml: calc((100vw - 1280px) * 0.5);
+//     --mr: calc((100vw - 1280px) * 0.5);
+//   }
+
+//   @include global.media(tb) {
+//     --ml: 5vw;
+//     --mr: 5vw;
+//   }
+
+//   @include global.media(sp) {
+//     --ml: 5vw;
+//     --mr: 5vw;
+//   }
+// }
+
+.e-common_width {
+  // width: var(--commonWidth);
+  // margin-left: auto;
+  // margin-right: auto;
+}
+
+.e-common_wrap {
+  // width: var(--commonWidth);
+  // padding-top: 6rem;
+  // padding-bottom: 6rem;
+
+  // @include global.media(tb) {
+  //   padding-top: 4rem;
+  //   padding-bottom: 4rem;
+  // }
+
+  // @include global.media(sp) {
+  //   padding-top: 4rem;
+  //   padding-bottom: 4rem;
+  // }
+}

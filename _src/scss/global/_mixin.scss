@@ -1,0 +1,313 @@
+@use "variable" as var;
+@use "sass:math";
+/* -----------------------
+メディアクエリ
+@include global.media(pc) {}
+@include global.media(tb) {}
+@include global.media(sp) {}
+-----------------------*/
+
+@mixin media($media-width) {
+  @if $media-width==sp {
+    @media only screen and (max-width: #{var.$mediaSP}px) {
+      @content;
+    }
+  } @else if $media-width==tb {
+    @media only screen and (max-width: #{var.$mediaTB}px) {
+      @content;
+    }
+  } @else if $media-width==pc {
+    @media only screen and (min-width: #{var.$mediaTB}px) {
+      @content;
+    }
+  }
+}
+
+/* -----------------------
+
+flex基本設定
+ @include global.flex(space-between,center);
+
+-----------------------*/
+@mixin flex($jc: flex-start, $ai: stretch) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $jc;
+  align-items: $ai;
+  width: 100%;
+}
+
+/* -----------------------
+
+blogのindexなどのリスト組。ulなどwrapper要素ににつける
+ @include global.list(3,2rem);
+
+-----------------------*/
+@mixin list($col: 3, $padd-lr: 2rem) {
+  width: calc(100% - 1px + #{$padd-lr});
+  margin-left: math.div($padd-lr, -2);
+
+  & > * {
+    width: math.div(100%, $col);
+    padding-left: math.div($padd-lr, 2);
+    padding-right: math.div($padd-lr, 2);
+  }
+}
+
+/* -----------------------
+
+Grid for IE11
+@include global.flex(space-between,center);
+
+-----------------------*/
+@mixin grid($type, $start: 1, $span: 1) {
+  @if $type== "column" {
+    -ms-grid-column: $start;
+    -ms-grid-column-span: $span;
+    grid-column: $start / span $span;
+  } @else {
+    -ms-grid-row: $start;
+    -ms-grid-row-span: $span;
+    grid-row: $start / span $span;
+  }
+}
+
+/* -----------------------
+
+fontサイズを設定する (weightやfamilyは端折らず記載する)
+@include global.font(var(--pow0), var(--fwn), var(--ls), var(--lh), var(--ff));
+
+-----------------------*/
+@mixin font($size: 1rem, $weight: var(--fwn), $letter-spacing: 0.06em, $lign-height: 1.75, $family: "san-serif") {
+  font: {
+    size: $size;
+    weight: $weight;
+    family: $family;
+  }
+
+  letter-spacing: $letter-spacing;
+  line-height: $lign-height;
+}
+
+// /* -----------------------
+// べき乗の計算をする
+// -----------------------*/
+// @function pow($exp, $ratio: var.$font_ratio) {
+//   $base: $ratio;
+//   $value: 1;
+
+//   @if $exp>=1 {
+//     @for $i from 1 through $exp {
+//       $value: $value * $base;
+//     }
+//   } @else if $exp <=-1 {
+//     @for $i from 1 through -$exp {
+//       $value: math.div($value, $base);
+//     }
+//   } @else {
+//     $value: 1;
+//   }
+
+//   @return $value;
+// }
+
+/* -----------------------
+
+cleafix
+@include clearfix;
+-----------------------*/
+@mixin clearfix {
+  _height: 1px;
+  min-height: 1px;
+
+  /*・･*/
+  /*/
+  height: auto;
+  overflow: hidden;
+  /**/
+  &:after {
+    height: 0;
+    visibility: hidden;
+    content: ".";
+    display: block;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* -----------------------
+
+icon画像を設定する
+@include icon(150px, 12px, "../image/common/logo");
+
+-----------------------*/
+@mixin icon($width: 20px, $height: 20px, $path: "../image/icon/xxx") {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: $width $height;
+  background-position: center;
+  background-image: url($path + ".webp");
+  background-image: url($path + ".svg");
+  overflow: hidden;
+  text-indent: -99999999px;
+}
+
+/* -----------------------
+ボタンのカラー設定
+@include mixin.ButtonColor(背景色, 罫線色, 文字色, svg色, ホバー背景色, ホバー罫線色, ホバー文字色, ホバーsvg色);
+-----------------------*/
+@mixin ButtonColor($background-color, $border-color, $color, $hover-background-color, $hover-border-color, $hover-color) {
+  color: $color;
+  fill: $color;
+  transition:
+    color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms,
+    fill 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    will-change: opacity;
+    border: 1px solid;
+    display: block;
+    transition: opacity 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+  }
+  &:before {
+    background: $background-color;
+    border: 1px solid $border-color;
+    z-index: 1;
+    opacity: 1;
+  }
+  &:after {
+    background: $hover-background-color;
+    border-color: $hover-border-color;
+    z-index: 0;
+    opacity: 0;
+  }
+
+  @media only screen and (min-width: #{var.$mediaTB}px) {
+    &:hover {
+      color: $hover-color;
+      fill: $hover-color;
+      &:before {
+        opacity: 0;
+      }
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.is-color__reverse {
+    color: $hover-color;
+    fill: $hover-color;
+    &:before {
+      opacity: 0;
+    }
+    &:after {
+      opacity: 1;
+    }
+    @media only screen and (min-width: #{var.$mediaTB}px) {
+      &:hover {
+        color: $color;
+        fill: $color;
+        &:before {
+          opacity: 1;
+        }
+        &:after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+/* -----------------------
+ガイド
+-----------------------*/
+@mixin Guide() {
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 1px dotted rgba(#888888, 0.5);
+    pointer-events: none;
+  }
+}
+
+/* -----------------------
+×
+-----------------------*/
+@mixin close($color: red) {
+  &:before,
+  &:after {
+    content: "";
+    width: 141.4%;
+    height: 1px;
+    background-color: $color;
+    transform-origin: center center;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: background-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+  }
+
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+/* -----------------------
+ratio
+// @include global.ratio($pc: math.div(3,2));
+// @include global.ratio($pc: math.div(3,2), $tb: math.div(3,2), $sp: math.div(3,2));
+// @include global.ratio(math.div(3,2), math.div(3,2), math.div(3,2));
+-----------------------*/
+@mixin ratio($pc: math.div(1, 1), $tb: $pc, $sp: $pc) {
+  aspect-ratio: $pc;
+  @include media(tb) {
+    aspect-ratio: $tb;
+  }
+  @include media(sp) {
+    aspect-ratio: $sp;
+  }
+}
+
+/* -----------------------
+ScrollManager
+@include global.lerp(opacity, $sp: 0.55, $gp: 0.75, $sn: 0, $gn: 1);
+-----------------------*/
+@mixin lerp(
+  $name: opacity,
+  $target: var(--thisProgressBottom),
+  $sp: 0,
+  // start progress
+  $gp: 1,
+  // goal progress
+  $sn: 0,
+  // value at start
+  $gn: 1 // value at goal
+) {
+  @if $gp == $sp {
+    /* 退避：ゼロ除算回避 */
+    --#{$name}: #{$gn};
+  } @else {
+    /* 区間正規化 t = clamp( (p - sp)/(gp - sp), 0, 1 ) */
+    --p-#{$name}: clamp(0, calc((#{$target} - #{$sp}) / (#{$gp} - #{$sp})), 1);
+    /* 補間 value = sn + (gn - sn) * t */
+    --#{$name}: calc(#{$sn} + (#{$gn} - #{$sn}) * var(--p-#{$name}));
+  }
+}

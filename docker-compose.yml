@@ -1,0 +1,67 @@
+# version は不要（compose-spec）
+# @done HMR-2: ポートを環境変数化して複数リポジトリ同時起動時のポート衝突を防ぐ
+services:
+  frontend:
+    image: node:20.11-alpine3.18
+    working_dir: /src
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    volumes:
+      - ./:/src:nocache
+    command: /bin/sh -c 'npm ci && npm run docker'
+    tty: true
+    depends_on:
+      - web_heteml
+    environment:
+      WP_ENV: development
+      TZ: Asia/Tokyo
+
+  web_heteml:
+    image: php:8.2-apache
+    ports:
+      - "${PHP_PORT:-3000}:80"
+    volumes:
+      - ./_public:/var/www/html:nocache
+    environment:
+      WP_ENV: development
+      TZ: Asia/Tokyo
+
+  web_wordpress:
+    image: wordpress:6.3.1-php8.2-apache
+    volumes:
+      - ./_wp/themes/:/var/www/html/wp-content/themes/delaunay:nocache
+      - ./_wp/plugins/:/var/www/html/wp-content/plugins:nocache
+      - ./_wp/init-script.sh:/var/www/html/init-script.sh:ro
+      - ./_wp/.wp-initialized:/var/www/html/.wp-initialized
+    depends_on:
+      - db
+    ports:
+      - "${WP_PORT:-9000}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WP_ENV: development
+      TZ: Asia/Tokyo
+    command: >
+      sh -c "
+        docker-entrypoint.sh apache2-foreground &
+        bash /var/www/html/init-script.sh &&
+        wait
+      "
+
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    volumes:
+      - db_data:/var/lib/mysql:nocache
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      TZ: Asia/Tokyo
+
+volumes:
+  db_data:

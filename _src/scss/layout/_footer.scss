@@ -1,0 +1,269 @@
+@use "../global"as global;
+
+// :root {
+//   --FooterBgc: var(--Key1); //フッター背景色
+//   --FooterText: var(--White); //フッター文字色
+//   --FooterBdc: hsla(0, 0%, 100%, 0.5); //フッター罫線色
+// }
+// .l-footer {
+//   background-color: var(--FooterBgc);
+//   position: relative;
+//   * {
+//     color: var(--FooterText);
+//     fill: var(--FooterText);
+//     border-color: var(--FooterBdc);
+//     &:before,
+//     &:after {
+//       color: var(--FooterText);
+//       fill: var(--FooterText);
+//       border-color: var(--FooterBdc);
+//     }
+//   }
+
+//   a {
+//     transition: opacity 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms, fill 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms, color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+//     will-change: opacity, fill, color;
+//     @include global.media(pc) {
+//       &:hover {
+//         opacity: 0.5;
+//       }
+//     }
+//     &[target="_blank"] {
+//       >span {
+//         padding-right: 1.2em;
+//         position: relative;
+
+//         &:before {
+//           content: "";
+//           width: 0.6em;
+//           height: 0.4em;
+//           position: absolute;
+//           right: 2px;
+//           top: calc(50% + 2px);
+//           transform: translate(0, -50%) rotate(0deg);
+//           border: 1px solid;
+//           transition: border-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+//         }
+
+//         &:after {
+//           content: "";
+//           position: absolute;
+//           width: 0.6em;
+//           height: 0.4rem;
+//           right: -1px;
+//           top: calc(50% + -1px);
+//           transform: translate(0, -50%) rotate(0deg);
+//           border-top: 1px solid;
+//           border-right: 1px solid;
+//           transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+//           transition: border-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+//         }
+//       }
+//     }
+//   }
+
+//   &__wrap {
+//     @extend .e-common_width;
+//   }
+
+//   &__inner {
+//     @include global.flex(space-between, flex-start);
+
+//     @include global.media(tb) {
+//       display: block;
+//       width: 100%;
+//     }
+//   }
+
+//   &__head {
+//     width: 33%;
+//     padding-top: 4rem;
+//     padding-bottom: 8rem;
+    
+//     @include global.media(tb) {
+//       display: block;
+//       width: 100%;
+//       text-align: center;
+//       padding-top: 4rem;
+//       padding-bottom: 3rem;
+//       border-bottom: 1px solid;
+//       border-color: inherit;
+//     }
+//     @include global.media(sp) {
+//       padding-top: 3rem;
+//       padding-bottom: 2rem;
+//     }
+//   }
+
+//   &__body {
+//     width: calc(100% - 33%);
+//     padding-top: 4rem;
+//     padding-bottom: 8rem;
+    
+//     @include global.media(tb) {
+      
+//       width: 100%;
+//       padding-top: 3rem;
+//       padding-bottom: 4rem;
+//     }
+//     @include global.media(sp) {
+//       padding-top: 2rem;
+//       padding-bottom: 3rem;
+//     }
+
+//     &__wrap {
+//       @include global.flex(space-between, flex-start);
+//       margin-left: auto;
+//       margin-right: auto;
+
+//       @include global.media(sp) {
+//         gap: 2rem 0;
+//         // max-width: 360px;
+//       }
+//     }
+//   }
+
+//   &__foot {
+//     width: 100%;
+//     padding-top: 2rem;
+//     padding-bottom: 2rem;
+//     border-top: 1px solid;
+//     border-color: inherit;
+//     &__wrap {
+//       @include global.flex(space-between, center);
+//       @include global.media(sp) {
+//         display: block;
+
+//       }
+//     }
+//   }
+
+//   &__logo {
+//     width: 12rem;
+//     margin-bottom: 1rem;
+
+//     span {
+//       display: block;
+//       width: 100%;
+//     }
+//   }
+
+//   &__copyright {
+//     @include global.font(calc(var(--pow0) - 1px), var(--fwn), var(--ls), 1, var(--ff));
+
+//     @include global.media(sp) {
+//       font-size: calc(var(--pow0) - 2px);
+//       margin-top: 2rem;
+//       text-align: center;
+//     }
+//   }
+
+//   &__nav {
+//     @include global.media(sp) {
+//       width: 50%;
+      
+//     }
+//     &__ul {}
+//     &__li {
+
+//       &.has-child{
+
+//       }
+//     }
+//     &__link {
+//       @include global.font(calc(var(--pow0) - 0px), var(--fwn), var(--ls), 1, var(--ff));
+//       padding: 1em 0;
+//       display: block;
+//     }
+
+//     &__wrap {
+//       display: inline-block;
+//     }
+
+//     &__title {
+//       display: block;
+//     }
+
+//     &__subtitle {
+//       display: none;
+//     }
+
+//     &__child {
+
+//       &__ul {}
+
+//       &__li {
+//       }
+
+//       &__link {
+//         @include global.font(calc(var(--pow0) - 0px), var(--fwn), var(--ls), 1, var(--ff));
+//         padding: 1em 0 1em 1em;
+//         position: relative;
+//         display: block;
+
+//         &:before {
+//           content: '';
+//           width: 0.6em;
+//           height: 0;
+//           border-top: 1px solid;
+//           position: absolute;
+//           top: 50%;
+//           left: 0;
+//         }
+//       }
+
+//       &__wrap {
+//         display: inline-block;
+//       }
+
+//       &__title {
+//         display: block;
+//       }
+
+//       &__subtitle {
+//         display: none;
+//       }
+//     }
+//   }
+
+//   &__subnav {
+//     &__ul {
+//       @include global.flex(flex-start, center);
+//       gap: 1rem;
+//       @include global.media(sp) {
+//         justify-content: center;
+//       }
+//     }
+
+//     &__li {}
+
+//     &__link {
+//       @include global.font(calc(var(--pow0) - 1px), var(--fwn), var(--ls), 1, var(--ff));
+//     }
+
+//     &__wrap {
+//       display: inline-block;
+//     }
+
+//     &__title {
+//       display: block;
+//     }
+
+//     &__subtitle {
+//       display: none;
+//     }
+//   }
+
+//   .p-info {
+//     margin-bottom: 1em;
+//   }
+
+//   .p-sns {
+//     ul {
+//       @include global.media(tb) {
+//         justify-content: center;
+//       }
+//     }
+//   }
+// }
+

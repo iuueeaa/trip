@@ -1,0 +1,88 @@
+@use "../global"as global;
+
+body {
+  &.is-guide {
+    #Guide {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999999999;
+      pointer-events: none;
+      opacity: 0.5;
+
+      &:before {
+        content: "";
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        border-top: 1px dotted rgba(#888888, 0.5);
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 0%;
+        height: 100%;
+
+        width: var(--commonWidth);
+        border-left: 1px dotted rgba(#888888, 0.5);
+        border-right: 1px dotted rgba(#888888, 0.5);
+      }
+
+      >span {
+        display: block;
+        position: relative;
+        height: 100%;
+        border-left: 1px dotted rgba(#888888, 0.5);
+        border-right: 1px dotted rgba(#888888, 0.5);
+        width: var(--commonWidth);
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: repeat(var(--gridNum), 1fr);
+        gap: var(--gridGap);
+        // background: repeating-linear-gradient(to right,
+        //   rgba(green, 0.1),
+        //   rgba(green, 0.1) var(--gridWidth),
+        //   rgba(green, 0.3) var(--gridWidth),
+        //   rgba(green, 0.3) calc(var(--gridWidth) + var(--gridGap))),
+        //   repeating-linear-gradient(to bottom,
+        //   rgba(green, 0.1),
+        //   rgba(green, 0.1) var(--gridWidth),
+        //   rgba(green, 0.3) var(--gridWidth),
+        //   rgba(green, 0.3) calc(var(--gridWidth) + var(--gridGap)));
+        background: repeating-linear-gradient(to right,
+          rgba(green, 0.5),
+          rgba(green, 0.5) var(--gridWidth),
+          rgba(green, 0.1) var(--gridWidth),
+          rgba(green, 0.1) calc(var(--gridWidth) + var(--gridGap)));
+
+        &:before {
+          content: "";
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 50%;
+          border-right: 1px dotted red;
+        }
+
+        &:after {
+          content: "";
+          width: 100%;
+          height: 0;
+          position: fixed;
+          top: 50%;
+          left: 0%;
+          border-top: 1px dotted red;
+        }
+
+      }
+    }
+  }
+}

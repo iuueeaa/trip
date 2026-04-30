@@ -1,0 +1,32 @@
+@use "../../global" as global;
+.page-case {
+  &__index {
+    &__list {
+      &__wrap {
+      }
+    }
+  }
+  &__detail {
+    &__wrap {
+      border: 1px solid var(--Border);
+      padding: var(--Gap4);
+      background-color: var(--White);
+      @include global.media(sp) {
+        padding: var(--Gap2);
+      }
+    }
+    &__head {
+    }
+
+    &__foot {
+      margin-top: var(--Gap2);
+      .p-share {
+        text-align: center;
+      }
+      .p-tag {
+        justify-content: center;
+        margin-bottom: var(--Gap1);
+      }
+    }
+  }
+}

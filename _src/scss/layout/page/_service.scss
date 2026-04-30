@@ -1,0 +1,11 @@
+@use "../../global" as global;
+.page-service {
+  &__index {
+    &__list {
+      &__wrap {
+      }
+      &__ul {
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+node_modules
+_bk
+*.log
+.DS_Store
+db_data
+_public/assets/*
+_wp/themes/assets/*
+.ports.json
+_public/.ports.json
+_wp/plugins/*
+!_wp/plugins/all-in-one-wp-migration
+!_wp/plugins/all-in-one-wp-migration-unlimited-extension
